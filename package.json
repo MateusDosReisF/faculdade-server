@@ -1,0 +1,13 @@
+{
+  "name": "projeto",
+  "version": "1.0.0",
+  "description": "pos-graduacao",
+  "main": "index.js",
+  "author": "mateus",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.4.1",
+    "shortid": "^2.2.16"
+  }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encurtador de URL</title>
+</head>
+<body>
+    <h1>Encurtador de URL</h1>
+    <form id="urlForm">
+        <label for="url">Insira a URL:</label>
+        <input type="text" id="url" name="url">
+        <button type="submit">Encurtar</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('urlForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const urlInput = document.getElementById('url');
+            const url = urlInput.value.trim();
+
+            try {
+                const response = await fetch('http://localhost:3000/shorten', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ url })
+                });
+                const data = await response.json();
+                document.getElementById('result').innerText = `URL encurtada: ${data.shortUrl}`;
+            } catch (error) {
+                console.error('Erro ao encurtar URL:', error);
+            }
+        });
+    </script>
+</body>
+</html>
